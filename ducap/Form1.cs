@@ -38,24 +38,26 @@ namespace ducap
         private void button2_Click(object sender, EventArgs e)
         {
             //get Selected Host and Parse into Array
-            //try {
-            //    string curItem = listBox1.SelectedItem.ToString();
+            try
+            {
+                string curItem = listBox1.SelectedItem.ToString();
+                string[] host = new string[2];
+                if (curItem != null)
+                {
+                    
+                    int ipLength = curItem.Length - 26;
+                    host[0] = curItem.Substring(26, ipLength);
+                    host[1] = curItem.Substring(5, 17);
 
-            //    if (curItem != null)
-            //    {
-            //        string[] host = new string[2];
-            //        int ipLength = curItem.Length - 26;
-            //        host[0] = curItem.Substring(26, ipLength);
-            //        host[1] = curItem.Substring(5, 17);
+                }
 
-            //    }
-            //}
-            
-         
+                //Send the Arp Poison Packages
+                ArpSpoofer arper = new ArpSpoofer(host);
+                arper.sendArpSpoof();
+            } catch  {
 
-            //Send the Arp Poison Packages
-            ArpSpoofer arper = new ArpSpoofer();
-            arper.sendArpSpoof();
+                Console.WriteLine("No Host selected!!!");
+            }            
         }
     }
 
