@@ -19,3 +19,6 @@ c:\users\yannic\documents\visual studio 2015\Projects\ducap\ducap\obj\Debug\duca
 c:\users\yannic\documents\visual studio 2015\Projects\ducap\ducap\obj\Debug\ducap.exe
 c:\users\yannic\documents\visual studio 2015\Projects\ducap\ducap\obj\Debug\ducap.pdb
 c:\users\yannic\documents\visual studio 2015\Projects\ducap\ducap\obj\Debug\ducap.csprojResolveAssemblyReference.cache
+C:\Users\Yannic\documents\visual studio 2015\Projects\ducap\ducap\bin\Debug\Ionic.Zip.dll
+C:\Users\Yannic\documents\visual studio 2015\Projects\ducap\ducap\bin\Debug\Titanium.Web.Proxy.dll
+C:\Users\Yannic\documents\visual studio 2015\Projects\ducap\ducap\bin\Debug\Ionic.Zip.xml

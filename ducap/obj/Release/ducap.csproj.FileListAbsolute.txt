@@ -19,3 +19,6 @@ c:\users\yannic\documents\visual studio 2015\Projects\ducap\ducap\obj\Release\du
 c:\users\yannic\documents\visual studio 2015\Projects\ducap\ducap\obj\Release\ducap.csproj.GenerateResource.Cache
 c:\users\yannic\documents\visual studio 2015\Projects\ducap\ducap\obj\Release\ducap.exe
 c:\users\yannic\documents\visual studio 2015\Projects\ducap\ducap\obj\Release\ducap.pdb
+C:\Users\Yannic\documents\visual studio 2015\Projects\ducap\ducap\bin\Release\Ionic.Zip.dll
+C:\Users\Yannic\documents\visual studio 2015\Projects\ducap\ducap\bin\Release\Titanium.Web.Proxy.dll
+C:\Users\Yannic\documents\visual studio 2015\Projects\ducap\ducap\bin\Release\Ionic.Zip.xml

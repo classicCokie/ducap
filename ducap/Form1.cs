@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
-
+using System.Net;
+using System.Net.Sockets;
 
 
 namespace ducap
@@ -12,19 +13,16 @@ namespace ducap
         public Form1()
         {
             InitializeComponent();
-
+            //Send the Arp Poison Packages
+            string[] host = new string[2];
+            ArpSpoofer arper = new ArpSpoofer(host);
+            arper.sendArpSpoof();
             Thread proxy = new Thread(startProxyServer);
             proxy.Start();
         }
 
-        private void startProxyServer() {           
-            ProxyServer proxy = new ProxyServer(80);
-            proxy.StartServer();
-
-            while (true)
-            {
-                proxy.AcceptConnection();
-            }
+        private void startProxyServer() {
+            tcpProxy tcpP = new tcpProxy();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -32,7 +30,6 @@ namespace ducap
             NetworkScanner scanner = new NetworkScanner();
             List<string> hosts = scanner.getHosts();
             listBox1.DataSource = hosts;
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -43,12 +40,10 @@ namespace ducap
                 string curItem = listBox1.SelectedItem.ToString();
                 string[] host = new string[2];
                 if (curItem != null)
-                {
-                    
+                {            
                     int ipLength = curItem.Length - 26;
                     host[0] = curItem.Substring(26, ipLength);
                     host[1] = curItem.Substring(5, 17);
-
                 }
 
                 //Send the Arp Poison Packages
