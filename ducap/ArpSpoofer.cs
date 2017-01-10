@@ -78,9 +78,9 @@ namespace ducap
                     // 144, 43, 52, 51, 53, 243
                     //192, 37, 6, 60, 172, 120
                     SenderHardwareAddress = new byte[] { 144, 43, 52, 51, 53, 243 }.AsReadOnly(), // 03:03:03:03:03:03.
-                    SenderProtocolAddress = new byte[] { 192,168, 178, 1 }.AsReadOnly(), // 1.2.3.4.
+                    SenderProtocolAddress = new byte[] { 192,168, 2, 1 }.AsReadOnly(), // 1.2.3.4.
                     TargetHardwareAddress = new byte[] { 192, 37, 6, 60, 172, 120 }.AsReadOnly(), // 04:04:04:04:04:04.
-                    TargetProtocolAddress = new byte[] { 192, 168, 178, 44 }.AsReadOnly(), // 11.22.33.44.
+                    TargetProtocolAddress = new byte[] { 192, 168, 2, 176 }.AsReadOnly(), // 11.22.33.44.
                 };
 
             PacketBuilder builder = new PacketBuilder(ethernetLayer, arpLayer);
@@ -101,7 +101,7 @@ namespace ducap
                 {
 
                     Source = new MacAddress("90:2b:34:33:35:f3"),
-                    Destination = new MacAddress("c0:25:06:3c:ac:78"),
+                    Destination = new MacAddress("9c:80:df:84:9b:9c"),
                     EtherType = EthernetType.Arp, // Will be filled automatically.
                 };
 
@@ -116,9 +116,9 @@ namespace ducap
                     // 144, 43, 52, 51, 53, 243
                     //192, 37, 6, 60, 172, 120
                     SenderHardwareAddress = new byte[] { 144, 43, 52, 51, 53, 243 }.AsReadOnly(), // 03:03:03:03:03:03.
-                    SenderProtocolAddress = new byte[] { 192, 168, 178, 44 }.AsReadOnly(), // 1.2.3.4.
-                    TargetHardwareAddress = new byte[] { 132, 75, 245, 26, 129, 246 }.AsReadOnly(), // 04:04:04:04:04:04.
-                    TargetProtocolAddress = new byte[] { 192, 168, 178, 1 }.AsReadOnly(), // 11.22.33.44.
+                    SenderProtocolAddress = new byte[] { 192, 168, 2, 176 }.AsReadOnly(), // 1.2.3.4.
+                    TargetHardwareAddress = new byte[] { 156, 128, 223, 132, 155, 156 }.AsReadOnly(), // 04:04:04:04:04:04.
+                    TargetProtocolAddress = new byte[] { 192, 168, 2, 1 }.AsReadOnly(), // 11.22.33.44.
                 };
 
             PacketBuilder builder = new PacketBuilder(ethernetLayer, arpLayer);

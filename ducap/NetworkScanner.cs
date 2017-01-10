@@ -60,8 +60,31 @@ namespace ducap
 
        private void scan_Network(int counter)
         {
-            Console.WriteLine(counter);
-                string ipRange = "192.168.178.";
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            string ipRange = "192.168.2.";
+
+         
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                {
+                    ipRange = ip.ToString();
+                }
+            }
+
+            //Make IP Adress to Ip Range
+            int c = 0;
+            for (int i = 0; i < ipRange.Length; i++) {
+                if(ipRange[i] == '.')
+                {
+                    c++;
+                    if(c == 3)
+                    {
+                        ipRange = ipRange.Substring(0, i);
+                    }
+                }
+            }
+            
                 IPAddress dst = IPAddress.Parse(String.Concat(ipRange, counter));
                 uint uintAddress = BitConverter.ToUInt32(dst.GetAddressBytes(), 0);
                 byte[] macAddr = new byte[6];
